@@ -28,7 +28,7 @@ The app has one http endpoint and relies on two other services. The first one pr
    
 5. Tell me something about Chuck Norris ...
 
-   ```http request
+   ```bash
    GET localhost:8080/aboutchuck
    HTTP/1.1 200
    Content-Type: application/json  
@@ -38,7 +38,7 @@ The app has one http endpoint and relies on two other services. The first one pr
    }
    ```
 
-   ```http request
+   ```bash
    GET localhost:8080/aboutchuck?lang=de
    HTTP/1.1 200
    Content-Type: application/json
