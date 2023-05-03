@@ -54,7 +54,7 @@ testing {
                 implementation(libs.jsonassert)
                 implementation(libs.javax.annotation.api)
 
-                // why does this work
+                // why does this NOT work???
                 // implementation(project())
 
                 // why does this work????

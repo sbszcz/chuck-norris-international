@@ -1,5 +1,7 @@
 # Chuck Norris International Application
 
+[![Build and run all tests](https://github.com/sbszcz/chuck-norris-international/actions/workflows/run-all-tests.yaml/badge.svg)](https://github.com/sbszcz/chuck-norris-international/actions/workflows/run-all-tests.yaml)
+
 ### Abstract
 
 This is a showcase application written in plain Java using Spring-Boot. 
