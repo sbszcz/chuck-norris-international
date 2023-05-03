@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.time.Duration;
 
-@ActiveProfiles("componenttest")
+@ActiveProfiles("componentTest")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CniSpecification {
 
