@@ -14,11 +14,11 @@ repositories {
     mavenCentral()
 }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(19))
-    }
-}
+//java {
+//    toolchain {
+//        languageVersion.set(JavaLanguageVersion.of(19))
+//    }
+//}
 
 dependencies {
     implementation(libs.spring.boot.starter)
