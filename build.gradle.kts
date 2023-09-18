@@ -50,7 +50,6 @@ testing {
 
         configureEach {
             if (this is JvmTestSuite) {
-                useJUnitJupiter()
 
                 targets {
                     all {
