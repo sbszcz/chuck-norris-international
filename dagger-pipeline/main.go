@@ -20,7 +20,7 @@ func main() {
 		From("gradle:8.3")
 
 	source := client.Host().Directory(".")
-
+	gradleCache := client.CacheVolume("gradle")
 	gradleContainer = gradleContainer.
 		WithDirectory("/app", source, dagger.ContainerWithDirectoryOpts{
 			Exclude: []string{
@@ -34,7 +34,8 @@ func main() {
 				"gradlew.bat",
 			},
 		}).
-		WithWorkdir("/app")
+		WithWorkdir("/app").
+		WithMountedCache("/home/gradle/.gradle", gradleCache)
 
 	container := gradleContainer.WithExec([]string{
 		"gradle", "--no-daemon", "--console=plain", "componentTest",
