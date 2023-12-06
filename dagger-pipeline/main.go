@@ -17,7 +17,7 @@ func main() {
 
 	gradleContainer := client.
 		Container().
-		From("gradle:8.3")
+		From("gradle:8.5")
 
 	source := client.Host().Directory(".")
 	gradleCache := client.CacheVolume("gradle")
