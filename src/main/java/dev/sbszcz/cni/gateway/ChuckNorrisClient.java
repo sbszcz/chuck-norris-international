@@ -1,10 +1,9 @@
 package dev.sbszcz.cni.gateway;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestClient;
 
 import java.util.Set;
 
@@ -19,29 +18,40 @@ public class ChuckNorrisClient {
             String value
     ){}
 
-    private final RestTemplate restTemplate;
+    @Value("${chucknorris.protocol}") String protocol;
+    @Value("${chucknorris.host}") String hostName;
+    @Value("${chucknorris.port:0}") int port;
 
-    public ChuckNorrisClient(@Qualifier("chuckNorrisRestTemplate") RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    private String baseUri(String protocol, String hostName, int port) {
+        final var sb = new StringBuilder(protocol).append("://").append(hostName);
+        if (port > 0) {
+            sb.append(":").append(port);
+        }
+        return sb.toString();
     }
 
     public String getRandom() {
 
-        final ResponseEntity<ChuckNorrisResponseVO> response;
+        final ChuckNorrisResponseVO response;
+
+        RestClient restClient = RestClient.create();
 
         try {
-            response = restTemplate.getForEntity("/jokes/random", ChuckNorrisResponseVO.class);
+            response = restClient.get()
+                    .uri(baseUri(protocol, hostName, port) + "/jokes/random")
+                    .retrieve()
+                    .body(ChuckNorrisResponseVO.class);
+
         } catch (HttpStatusCodeException e) {
             // todo: logging
             throw new RuntimeException(e);
         }
 
-        final ChuckNorrisResponseVO joke = response.getBody();
-        if (joke == null) {
+        if (response == null) {
             throw new IllegalStateException("chuck norris response did not contain json body");
         }
 
-        return joke.value;
+        return response.value;
     }
 
 

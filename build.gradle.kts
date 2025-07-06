@@ -1,10 +1,9 @@
-//todo remove this suppression when https://github.com/gradle/gradle/issues/22797 is fixed
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     java
     `jvm-test-suite`
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
+    idea
 }
 
 group = "dev.sbszcz"
@@ -12,6 +11,13 @@ version = "0.0.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadJavadoc = true
+    }
 }
 
 java {

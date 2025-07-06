@@ -27,8 +27,8 @@ public class CniSpecification {
     void setupCniClient(){
         cniClient = new RestTemplateBuilder()
                 .rootUri("http://localhost:" + localServerPort)
-                .setConnectTimeout(Duration.ofSeconds(1))
-                .setReadTimeout(Duration.ofSeconds(1))
+                .connectTimeout(Duration.ofSeconds(1))
+                .readTimeout(Duration.ofSeconds(1))
                 .build();
     }
 
